@@ -116,7 +116,7 @@ class DataCheckoutScreen extends React.Component {
             {key: 'Download Instructions for Facebook Data', screen: 'https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav'},
           ]}
           renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity style={style.button} onPress={() => LinkingIOS.openURL({screen})}><Text>{item.key}</Text></TouchableOpacity></View>}
-        /> */}
+        />
       </SafeAreaView>
     );
   }
