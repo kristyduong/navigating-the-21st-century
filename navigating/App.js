@@ -110,10 +110,13 @@ class DataCheckoutScreen extends React.Component {
     var description = "Companies surprisingly (or not so surprisingly) have a lot of data on you. Consider all the time you spend on messaging apps, browsing social media, or scrolling through cat memes. In accordance with GDPR, many companies have made it easier to see what exactly they have collected on you. Here are some links to help you get an idea of what your data looks like out in the world.";
     return(
       <SafeAreaView>
-        <Text style={{color: 'blue'}}
-        onPress={() => LinkingIOS.openURL('https://takeout.google.com/settings/takeout')}>Google Takeout</Text>
-        <Text style={{color: 'blue'}}
-        onPress={() => LinkingIOS.openURL('https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav')}>Download Instructions for Facebook Data</Text>
+        <FlatList
+          data={[
+            {key: 'Google Takeout', screen: 'https://takeout.google.com/settings/takeout'},
+            {key: 'Download Instructions for Facebook Data', screen: 'https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav'},
+          ]}
+          renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity style={style.button} onPress={() => LinkingIOS.openURL({screen})}><Text>{item.key}</Text></TouchableOpacity></View>}
+        /> */}
       </SafeAreaView>
     );
   }
