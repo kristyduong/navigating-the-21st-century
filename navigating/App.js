@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { ActivityIndicator, Alert, Button, FlatList, Image, ImageBackground, LinkingIOS, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View, SafeAreaView } from 'react-native';
+import { ActivityIndicator, Alert, Button, FlatList, Image, ImageBackground, LinkingIOS, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View, SafeAreaView, ScrollView } from 'react-native';
 import { AppLoading, Asset, Constants, Font, Icon, Location, Permissions } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
@@ -47,11 +47,15 @@ class BiasScreen extends React.Component {
     title: 'Algorithmic Bias',
   };
   render() {
-    var description = ""
+    var description = "It has long been thought that machines are objective. Unlike humans, they are not swayed by emotion or prejudice... or so we would like to think. In May 2016, ProPublica published a story called Machine Bias, which analyzed the performance of an algorithm called COMPAS. COMPAS is a piece of software used in the criminal justice system in Broward County, Florida, that predicts the risk of recidivism, or the chance that someone will reoffend, before their trial. ProPublica's analysis indicated that African Americans were more likely to be misclassified as higher risk, while more Caucasians were more likely to be misclassified as lower risk. This is the most well documented and publicized story of algorithmic bias, but it is by no means the only story. As algorithms are increasingly used to help inform our decisions, we must be wary not to programatically marginalize already marginalized minority groups from historical prejudices and implicit bias. Yet, that is a difficult task. To give a very high level overview of how machine learning works, you essentially have a set of features and a set of weights for those features that determine the output of your algorithm. Those weights are learned from the training data given to the model, meaning that with each new set of examples, the weights are adjusted accordingly. This is a very basic overview, and in practice, models usually tend to be more complicated and become more of black boxes that take in inputs and output results that the algorithm is supposedly optimized to produce.";
     return(
       <SafeAreaView style={style.background}>
-        <Text style={style.description}>{description}</Text>
-        <Image style={style.image} source={require('./assets/images/home.png')} />
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <ScrollView>
+            {/* <Image style={style.image} source={require('./assets/images/home.png')} /> */}
+            <Text style={style.description}>{description}</Text>
+          </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }
@@ -65,8 +69,8 @@ class VehicleScreen extends React.Component {
     var description = "Technological automation is not a new concept. Technology has been part of our lives for years from ATMs to credit scores. Yet what seems to make the advent of artificial intelligence is our loss of agency. There are neural networks capable of defeating humans at chess and accomplishing near-human performance in many classification tasks. They are even supposedly safer drivers. If machines are truly able to accomplish tasks better than humans, then is it not better to allow the machines to do them?"
     return(
       <SafeAreaView style={style.background}>
-        <Text style={style.description}>{description}</Text>
         <Image style={style.image} source={require('./assets/images/car.png')} />
+        <Text style={style.description}>{description}</Text>
       </SafeAreaView>
     );
   }
@@ -82,7 +86,8 @@ class AlgorithmScreen extends React.Component {
     var description = "The past few decades of human history have seen rapid technological innovation, particularly in the sphere of algorithms and artificial intelligence. We are not yet at the point where machines run our lives, but they have and continue to be integrated into society whether it is your online banking or autonomous vehicles. As algorithms continue to take on more and more human tasks, we should understand who benefits and suffers and how our values play a key role in the direction of technology. Like data privacy, this too is an ongoing conversation.";
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={style.background}>
+        <Image style={style.image} source={require('./assets/images/algorithm.png')} />
         <Text style={style.description}>{description}</Text>
         <FlatList
           data={[
@@ -123,8 +128,15 @@ class GDPRScreen extends React.Component {
     return(
       <SafeAreaView>
         <Text style={style.description}>{description}</Text>
-        <View></View>
-        <View></View>
+        <View style={style.gdprcontainer}>
+          <Text>Clear Language</Text>
+          <Text>User Consent</Text>
+          <Text>Transparency</Text>
+        </View>
+        <View style={style.gdprcontainer}>
+          <Text>Stronger Enforcement</Text>
+          <Text>User Control Over Data</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -138,6 +150,7 @@ class DebateScreen extends React.Component {
     var description = "If you went through some of the earlier modules, you might find it at least mildly alarming the amount data floating around on the internet about you. However, it is not all bad. In exchange for user privacy, what do we gain?"
     return(
       <SafeAreaView>
+        <Image style={style.image} source={require('./assets/images/profile.png')} />
         <Text style={style.description}>{description}</Text>
       </SafeAreaView>
     );
@@ -151,10 +164,10 @@ class PrivacyScreen extends React.Component {
 
   render() {
     const {navigate} = this.props.navigation;
-    var description = "After GDPR passed in the UK, websites began bombarding users with updated privacy policies that you likely did not read. However, it might be worth taking a second glance at what you supposedly agreed to. Every online platform is a service where the product is likely your data in some way, shape, or form, even if it is in the name of improving user experience. In this module, we will take a look at the rights that GDPR afford us, the ways you can download the data companies have on you, and the tradeoffs between privacy and security.";
+    var description = "After GDPR passed in the UK, websites began bombarding users with updated privacy policies that you likely did not read. However, it might be worth taking a second glance at what you supposedly agreed to. Every online platform is a service where the product is likely your data in some way, shape, or form. In this module, we will take a look at the rights that GDPR afford us, the ways you can download the data companies have on you, and the tradeoffs between privacy and security.";
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={style.background}>
         <Text style={style.description}>{description}</Text>
         <FlatList
           data={[
@@ -174,7 +187,13 @@ class DigitalYouScreen extends React.Component {
     title: 'The Digital You',
   };
   render(){
-    var description = "Though we may not think too much of it, everytime we post online, we are shaping our digital selves. All those Instagram posts that strike jealousy in others...";
+    const {navigate} = this.props.navigation;
+    var description = "Though we may not think too much of it, everytime we post online, we are shaping our digital selves. All those Instagram posts that strike jealousy in others are influencing us to believe that our friends are living the dream.";
+    return(
+      <SafeAreaView style={style.background}>
+        <Text style={style.description}>{description}</Text>
+      </SafeAreaView>
+    );
   }
 }
 
@@ -183,7 +202,14 @@ class EchoChamberScreen extends React.Component {
     title: 'Echo Chambers',
   };
   render(){
-    var description = "As a result of both the current tumultuous political climate and ";
+    const {navigate} = this.props.navigation;
+    var description = "Besides 'fake news,' the other buzzword in the media sphere is 'echo chamber.' Echo chambers are environments where people only encounter others who share the same beliefs and opinions, often creating self-affirming cycles that disengage with opposing viewpoints. Above is a graph generated from my CS224W team's research on political subcommunities on Reddit, where we found that the more important users were ones who engaged in discourse with both liberals and conservatives.";
+    return(
+      <SafeAreaView style={style.background}>
+        <Image style={{ width: 250, height: 200, margin: 20,}} source={require('./assets/images/cs224-12-2017-graph.png')} />
+        <Text style={style.description}>{description}</Text>
+      </SafeAreaView>
+    );
   }
 }
 
@@ -192,7 +218,13 @@ class FakeNewsScreen extends React.Component {
     title: 'Fake News',
   };
   render(){
-    var description = "Russian bots. Sensationalist headlines. ";
+    const {navigate} = this.props.navigation;
+    var description = "Russian bots. Sensationalist headlines. There is a general consensus that fake news is bad and that there appear to be interests out there that wish to threaten American democracy by sewing doubt in media. So how can we better evaluate our news? Below are some exercises and tips on how to be mindful about your news intake. Don't take everything you read at face value.";
+    return(
+      <SafeAreaView style={style.background}>
+        <Text style={style.description}>{description}</Text>
+      </SafeAreaView>
+    );
   }
 }
 
@@ -252,6 +284,30 @@ class LocalMediaScreen extends React.Component {
 }
 
 class MediaScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Media Literacy',
+  };
+  render(){
+    const {navigate} = this.props.navigation;
+    var description = "With the rise of fake news and echo chambers in the scheme of the current political climate, it has become increasing vital that we understand the sources of our news and the biases they carry and to carry on civil discourse with those of opposing viewpoints.";
+    return (
+      <SafeAreaView style={style.background}>
+        <Text style={style.description}>{description}</Text>
+        <FlatList
+          data={[
+            {key: 'Scoping News', screen: 'ScopingNews'},
+            {key: 'The Digital You', screen: 'DigitalYou'},
+            {key: 'Echo Chambers', screen: 'EchoChamber'},
+            {key: 'Fake News', screen: 'FakeNews'},
+          ]}
+          renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity style={style.button} onPress={() => navigate(item.screen, {})}><Text>{item.key}</Text></TouchableOpacity></View>}
+        />
+      </SafeAreaView>
+    );
+  }
+}
+
+class ScopingNewsScreen extends React.Component {
   constructor(props){
     super(props);
     this.state ={ 
@@ -286,30 +342,15 @@ class MediaScreen extends React.Component {
   };
 
   static navigationOptions = {
-    title: 'Media Literacy',
+    title: 'Scoping News',
   };
 
   componentDidMount(){
     this._getLocationAsync();
-    // return fetch('https://newsapi.org/v2/top-headlines?' + 'country=us&' + 'apiKey=a94a02592f9b4eddbf6737248015d8bb')
-    //   .then((response) => response.json())
-    //   .then((responseJson) => {
-
-    //     this.setState({
-    //       isLoading: false,
-    //       dataSource: responseJson.articles,
-    //     }, function(){
-
-    //     });
-
-    //   })
-    //   .catch((error) =>{
-    //     console.error(error);
-    //   });
   }
 
   render() {
-    var description = "With the rise of fake news and echo chambers in the scheme of the current political climate, it has become increasing vital that we understand the sources of our news and the biases they carry and to carry on civil discourse with those of opposing viewpoints.";
+    var description = "News looks different depending on what perspective it's told from. Your news feed might be covered with articles about the current government administration, but how is that affecting your local town? How is it affecting the world abroad? No man is an island, and it is important to contextualize.";
     
     if(this.state.isLoading){
       return(
@@ -328,13 +369,8 @@ class MediaScreen extends React.Component {
     }
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={style.background}>
         <Text style={style.description}>{description}</Text>
-        <Text style={style.description}>"Scoping News"</Text>
-        {/* <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.source.name}, {item.title}, {item.description}</Text>}
-        /> */}
         <FlatList
           data={[
             {key: 'News from ' + this.state.city, screen: 'LocalMedia', place: this.state.city},
@@ -343,9 +379,6 @@ class MediaScreen extends React.Component {
           ]}
           renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity onPress={() => this.props.navigation.navigate(item.screen, {place: item.place})} style={style.button}><Text>{item.key}</Text></TouchableOpacity></View>}
         />
-        <Text style={style.description}>"The Digital You"</Text>
-        <Text style={style.description}>"Echo Chambers"</Text>
-        <Text style={style.description}>"Fake News"</Text>
       </SafeAreaView>
     );
   }
@@ -389,6 +422,9 @@ const MainNavigator = createStackNavigator({
   EchoChamber: {screen: EchoChamberScreen},
   Bias: {screen: BiasScreen},
   Vehicle: {screen: VehicleScreen},
+  DigitalYou: {screen: DigitalYouScreen},
+  FakeNews: {screen: FakeNewsScreen},
+  ScopingNews: {screen: ScopingNewsScreen},
 });
 
 const App = createAppContainer(MainNavigator);

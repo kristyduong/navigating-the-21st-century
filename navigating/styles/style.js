@@ -1,8 +1,10 @@
 'use strict';
 
 import { Font } from 'expo';
+import { Dimensions } from 'react-native';
 
 var React = require('react-native');
+var {windowHeight, windowWidth} = Dimensions.get('window');
 
 var {
   StyleSheet,
@@ -17,9 +19,21 @@ module.exports = StyleSheet.create({
 // justifyContent: distribution of children along primary axis (flex-start, center, flex-end, space-around, space-between, space-evenly)
 // alignItems: distribution of children along secondary axis (flex-start, center, flex-end, stretch)
 // for stretch to work, children can't have fixed dimension along secondary axis
+gdprcontainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+},
+
+gdprbutton: {
+    backgroundColor: 'gray',
+
+},
+
 image: {
     width: 200,
     height: 200,
+    margin: 20,
 },
 
 landingContainer: {
@@ -45,6 +59,12 @@ item: {
     padding: 10,
     fontSize: 18,
     height: 44,
+},
+
+scrollbackground: {
+    // backgroundColor: '#ccd8ff',
+    height: windowHeight,
+    alignItems: 'center',
 },
 
 background: {
