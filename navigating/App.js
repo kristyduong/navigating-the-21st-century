@@ -115,7 +115,7 @@ class DataCheckoutScreen extends React.Component {
             {key: 'Google Takeout', screen: 'https://takeout.google.com/settings/takeout'},
             {key: 'Download Instructions for Facebook Data', screen: 'https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav'},
           ]}
-          renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity style={style.button} onPress={() => LinkingIOS.openURL({screen})}><Text>{item.key}</Text></TouchableOpacity></View>}
+          renderItem={({item}) => <View style={style.buttonContainer}><TouchableOpacity style={style.button} onPress={() => LinkingIOS.openURL(item.screen)}><Text>{item.key}</Text></TouchableOpacity></View>}
         />
       </SafeAreaView>
     );
@@ -243,7 +243,7 @@ class LocalMediaScreen extends React.Component {
   componentDidMount(){
     const { navigation } = this.props;
     const place = navigation.getParam('place', 'No place identified');
-    return fetch('https://newsapi.org/v2/top-headlines?' + 'q=' + place + '&language=en&' + 'sortBy=relevancy&' + 'apiKey=a94a02592f9b4eddbf6737248015d8bb')
+    return fetch('https://newsapi.org/v2/top-headlines?' + 'q=' + place + '&language=en&' + 'sortBy=relevancy&' + 'apiKey=')
       .then((response) => response.json())
       .then((responseJson) => {
 
